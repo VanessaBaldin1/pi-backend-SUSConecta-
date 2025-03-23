@@ -1,59 +1,58 @@
-# Projeto Integrador – Reserva de Hospedagem – **StayOn**
+# Projeto Integrado – **SUS-Conecta**
 *Senac Penha - Curso Técnico em Informática para Internet*
 
 ## 1. Descrição do Projeto
 
-O **StayOn** é um sistema de reservas de hotéis desenvolvido para proporcionar uma maneira rápida, fácil e segura para os clientes buscarem e realizarem reservas de hospedagem online. O site permitirá que os usuários acessem informações detalhadas sobre os hotéis, como localização, preços, fotos e avaliações, além de realizarem suas reservas diretamente na plataforma.
+O **SUS-Conecta** é uma plataforma digital desenvolvida para otimizar a comunicação entre cidadãos, profissionais da saúde e serviços de saúde pública no Brasil. O sistema visa proporcionar um acesso mais fácil a informações de saúde, agendamento de consultas, exames e outros serviços relacionados ao Sistema Único de Saúde (SUS). A plataforma integra as funcionalidades de um sistema backend robusto e uma API eficiente.
 
 ## 2. Motivação
 
-O objetivo principal do projeto é facilitar o processo de reserva de hospedagem para os clientes, proporcionando uma plataforma acessível, segura e eficiente. O **StayOn** elimina a necessidade de intermediários, oferecendo aos usuários a praticidade de encontrar e reservar hotéis de forma direta. Além disso, o sistema agrega valor aos hotéis parceiros, aumentando a visibilidade e proporcionando uma nova fonte de clientes.
+O objetivo principal do projeto é melhorar a acessibilidade e a gestão dos serviços de saúde pública, proporcionando uma plataforma digital onde os cidadãos podem agendar consultas, acessar seus históricos médicos e obter informações essenciais sobre campanhas de saúde. O **SUS-Conecta** busca facilitar o uso dos serviços do SUS, trazendo mais eficiência e praticidade para o público.
 
 ## 3. Acessibilidade
 
-O **StayOn** estará disponível como um site responsivo, acessível em dispositivos desktop e móveis (smartphones e tablets), garantindo que os usuários possam acessar o serviço a qualquer momento e de qualquer lugar.
+O **SUS-Conecta** estará disponível como uma plataforma responsiva, permitindo acesso tanto por desktop quanto por dispositivos móveis (smartphones e tablets). Isso garante que os cidadãos possam acessar os serviços a qualquer momento e de qualquer lugar, facilitando o processo de agendamento e acompanhamento de saúde.
 
 ## 4. Tecnologias Utilizadas
 
 O sistema será desenvolvido com a seguinte stack tecnológica:
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** MySQL, APIs
+- **Backend:** Node.js, Express, MySQL
 - **Funcionalidades:**
-  - Filtros de pesquisa (localização, preço, tipo de quarto, etc.)
-  - Informações detalhadas sobre os hotéis (localização, preço, imagens, descrições e avaliações)
-  - Sistema de reservas online
-  - Integração via APIs para comunicação eficiente entre o cliente e o sistema
+  - Sistema de agendamento de consultas e exames
+  - Acesso a históricos médicos e dados de saúde
+  - Notificações de campanhas de vacinação e saúde pública
+  - Integração de APIs para otimizar a comunicação entre cidadãos e profissionais de saúde
 
 ## 5. Público-Alvo
 
-O **StayOn** é voltado para turistas e viajantes que buscam praticidade e segurança ao realizar reservas de hospedagem. O sistema também atende aos hotéis parceiros que desejam aumentar sua visibilidade e atrair mais clientes por meio da plataforma.
+O **SUS-Conecta** é voltado para cidadãos que desejam acessar e utilizar os serviços do Sistema Único de Saúde (SUS), além de profissionais da saúde que necessitam de ferramentas para otimizar o atendimento. O sistema também atende à gestão de serviços de saúde pública, buscando melhorar a eficiência dos processos.
 
 ## 6. Funcionalidades
 
-- **Pesquisa de Hotéis:** Filtros para localização, preço, tipo de quarto, entre outros.
-- **Detalhes dos Hotéis:** Acesso a informações como localização, preço, fotos e avaliações.
-- **Sistema de Reservas:** Realização de reservas diretamente online.
+- **Agendamento de Consultas:** Permite agendar consultas e exames com facilidade.
+- **Histórico Médico:** Acesso a dados de saúde e informações médicas.
+- **Notificações de Saúde:** Alertas sobre campanhas de vacinação e saúde pública.
 - **Plataforma Responsiva:** Acesso via desktop, smartphone e tablet.
 
 ## 7. Como Usar
 
-1. Acesse o site da plataforma em qualquer dispositivo.
-2. Utilize os filtros de pesquisa para encontrar o hotel desejado.
-3. Confira as informações detalhadas do hotel e suas avaliações.
-4. Realize sua reserva diretamente no site.
+1. Acesse o site ou plataforma do **SUS-Conecta** em qualquer dispositivo.
+2. Realize login utilizando a sua conta do SUS ou crie uma conta nova.
+3. Agende consultas ou exames conforme necessário.
+4. Acesse o histórico médico e receba notificações de saúde pública diretamente na plataforma.
 
-## 8. Contribuições
+## 8. Equipe
 
-Sinta-se à vontade para contribuir com o projeto! Se você deseja sugerir melhorias ou adicionar novas funcionalidades, basta seguir as etapas abaixo:
+- **Heloisa Bussi**
+- **Marcio Bazão**
+- **Vanessa Baldin**
 
-1. Faça um fork deste repositório.
-2. Crie uma branch para a sua modificação (`git checkout -b feature-nome`).
-3. Faça o commit das suas mudanças (`git commit -am 'Adicionando nova funcionalidade'`).
-4. Envie para o repositório remoto (`git push origin feature-nome`).
-5. Abra um pull request para revisão.
+## 9. Modelagem Conceitual do Banco de Dados
 
-## 9. Licença
+A modelagem conceitual do banco de dados pode ser visualizada através do seguinte link:
 
-Este projeto está licenciado sob a licença [Nome da Licença] - consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+![Modelagem Conceitual do Banco de Dados](/modelagem_conceitual/PI-modelo-conceitua2l%201.png)
+
 
