@@ -53,6 +53,6 @@ O **SUS-Conecta** é voltado para cidadãos que desejam acessar e utilizar os se
 
 A modelagem conceitual do banco de dados pode ser visualizada através do seguinte link:
 
-![Modelagem Conceitual do Banco de Dados](/modelagem_conceitual/PI-modelo-conceitua2l%201.png)
+![Modelagem Conceitual do Banco de Dados](/modelagem_conceitual/PI-modelo-conceitua2l%201..png)
 
 
