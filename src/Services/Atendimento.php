@@ -2,21 +2,23 @@
 require_once '../src/Database/Conexao.php';
 
 class Atendimento {
-    private $db;
-    private $id;
-    private $medicamento;
-    private $dataHora;
-    private $diagnostico;
-    private $prescricao;
-    private $observacoes;
-    private $status;
-    private $especialidades;
-    private $pacienteId;
-    private $hospitalId;
+    public $db;
+    public $id;
+    public $medicamento;
+    public $dataHora;
+    public $diagnostico;
+    public $prescricao;
+    public $observacoes;
+    public $status;
+    public $especialidades;
+    public $pacienteId;
+    public $hospitalId;
 
+    
     public function __construct() {
         $this->db = new Database();
     }
+    
 
     public function getAtendimentosDoDia($medicoId) {
         $sql = "SELECT a.*, p.nome as nome_paciente 

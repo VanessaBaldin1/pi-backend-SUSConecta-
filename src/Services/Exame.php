@@ -2,15 +2,15 @@
 require_once '../src/Database/Conexao.php';
 
 class Exame {
-    private $db;
-    private $id;
-    private $idConsulta;
-    private $tipo;
-    private $resultado;
-    private $laboratorio;
-    private $data;
-    private $atendimentoId;
-    private $pacienteId;
+    public $db;
+    public $id;
+    public $idConsulta;
+    public $tipo;
+    public $resultado;
+    public $laboratorio;
+    public $data;
+    public $atendimentoId;
+    public $pacienteId;
 
     public function __construct() {
         $this->db = new Database();
