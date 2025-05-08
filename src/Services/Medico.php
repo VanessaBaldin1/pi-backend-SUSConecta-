@@ -2,14 +2,14 @@
 require_once '../src/Database/Conexao.php';
 
 class Medico {
-    private $db;
-    private $id;
-    private $nome;
-    private $crm;
-    private $especialidade;
-    private $telefone;
-    private $email;
-    private $pacienteId;
+    public $db;
+    public $id;
+    public $nome;
+    public $crm;
+    public $especialidade;
+    public $telefone;
+    public $email;
+    public $pacienteId;
 
     public function __construct() {
         $this->db = new Database();
