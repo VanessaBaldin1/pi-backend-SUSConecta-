@@ -1,18 +1,4 @@
-<?php
-require_once '../Models/Medico.php';
-require_once '../Models/Atendimento.php';
 
-class MedicoView {
-    private $medico;
-    private $atendimentos;
-
-    public function __construct() {
-        $this->medico = new Medico();
-        $this->atendimentos = new Atendimento();
-    }
-
-    public function render() {
-        ?>
         <!DOCTYPE html>
         <html lang="pt-BR">
         <head>
@@ -92,7 +78,4 @@ class MedicoView {
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         </body>
         </html>
-        <?php
-    }
-}
-?> 
+        
