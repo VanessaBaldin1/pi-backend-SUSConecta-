@@ -1,7 +1,10 @@
 <?php
-require_once '../src/Database/Conecta.php';
 
+namespace ConectaConsulta\Models;
+
+use Exception;
 use PDO;
+use Throwable;
 
 class Paciente {
     public $db;
@@ -14,7 +17,12 @@ class Paciente {
     public $email;
 
     public function __construct() {
-        $this->db = new Database();
+        try{
+          $this->db = new Database();  
+        } catch ( Exception $ConectaConsulta){
+            die("Erro de conexão: " . $ConectaConsulta->getMessage());
+        }
+        
     }
 
     public function getId() {

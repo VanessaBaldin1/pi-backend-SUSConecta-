@@ -1,6 +1,8 @@
 <?php
 require_once '../src/Database/Conexao.php';
 
+
+
 class Exame {
     public $db;
     public $id;
