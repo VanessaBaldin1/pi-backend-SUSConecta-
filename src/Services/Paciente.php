@@ -1,5 +1,7 @@
 <?php
-require_once '../src/Database/Conexao.php';
+require_once '../src/Database/Conecta.php';
+
+use PDO:
 
 class Paciente {
     public $db;

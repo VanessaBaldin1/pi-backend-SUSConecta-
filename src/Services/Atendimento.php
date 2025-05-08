@@ -1,5 +1,6 @@
 <?php
 require_once '../src/Database/Conexao.php';
+require_once '../src/Services/Conexao.php';
 
 class Atendimento {
     public $db;
