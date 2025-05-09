@@ -1,7 +1,5 @@
 <?php
-require_once '../src/Database/Conexao.php';
-
-
+namespace ConectaConsulta\Services;
 
 class Exame {
     public $db;
