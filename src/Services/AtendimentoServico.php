@@ -1,9 +1,12 @@
 <?php
-require_once '../src/Database/Conexao.php';
-require_once '../src/Services/Conexao.php';
+namespace ConectaConsulta\Services;
 
-class Atendimento {
-    public $db;
+use ConectaConsulta\Database\ConexaoBD;
+use ConectaConsulta\Models\Atendimento;
+use PDO;
+
+class AtendimentoServico {
+    public $conexao;
     public $id;
     public $medicamento;
     public $dataHora;
@@ -18,7 +21,7 @@ class Atendimento {
     
     public function __construct() {
         
-        $this->db = new Database();
+        $this->conexao = ConexaoBD::getConexao();
     }
     
 
@@ -29,9 +32,9 @@ class Atendimento {
                 WHERE DATE(a.data_hora) = CURDATE() 
                 AND a.medico_id = ? 
                 ORDER BY a.data_hora";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$medicoId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->execute([$medicoId]);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getUltimasConsultas($pacienteId) {
@@ -41,9 +44,9 @@ class Atendimento {
                 WHERE a.Paciente_id_paciente = ? 
                 ORDER BY a.data_hora DESC 
                 LIMIT 10";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$pacienteId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->execute([$pacienteId]);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getObservacoesMedicas($pacienteId) {
@@ -53,12 +56,12 @@ class Atendimento {
                 WHERE a.Paciente_id_paciente = ? 
                 AND a.observacoes IS NOT NULL 
                 ORDER BY a.data_hora DESC";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$pacienteId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->execute([$pacienteId]);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function salvar() {
+    public function salvar(Atendimento $atendimento) {
         if ($this->id) {
             $sql = "UPDATE atendimento SET 
                     medicamento = ?, 
@@ -71,8 +74,8 @@ class Atendimento {
                     Paciente_id_paciente = ?, 
                     hospital_clinica_id_hospital = ? 
                     WHERE id_atendimento = ?";
-            $stmt = $this->db->prepare($sql);
-            return $stmt->execute([
+            $consulta = $this->conexao->prepare($sql);
+            return $consulta->execute([
                 $this->medicamento,
                 $this->dataHora,
                 $this->diagnostico,
@@ -89,21 +92,21 @@ class Atendimento {
                     medicamento, data_hora, diagnostico, prescricao, 
                     observacoes, status, especialidades, 
                     Paciente_id_paciente, hospital_clinica_id_hospital
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($sql);
-            $result = $stmt->execute([
-                $this->medicamento,
-                $this->dataHora,
-                $this->diagnostico,
-                $this->prescricao,
-                $this->observacoes,
-                $this->status,
-                $this->especialidades,
-                $this->pacienteId,
-                $this->hospitalId
-            ]);
+                ) VALUES (:medicamento, :data_hora, :diagnostico, :prescricao, :observacoes, :status, :especialidades, :paciente_id, :hospital_clinica_id)";
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":medicamento", $atendimento->getMedicamento(), PDO::PARAM_STR); 
+            $consulta->bindValue(":data_hora", $atendimento->getDataHora(), PDO::PARAM_STR);
+            $consulta->bindValue(":diagonistico", $atendimento->getDiagnostico(), PDO::PARAM_STR);
+            $consulta->bindValue(":prescricao", $atendimento->getPrescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":observacoes", $atendimento->getObservacoes(), PDO::PARAM_STR); 
+            $consulta->bindValue(":prescricoes", $prescricoes->getPrescricoes(),PDO::PARAM_STR);
+            $consulta->bindValue("::paciente_id", $paciente_id->getPaciente_id(),PDO::PARAM_INT);
+            $consulta->bindValue(":::hospital_clinica_id", $paciente_id->getHospital_clinica_id(),PDO::PARAM_INT);
+            
+
+            $result = $consulta->execute();
             if ($result) {
-                $this->id = $this->db->lastInsertId();
+                $this->id = $this->conexao->lastInsertId();
             }
             return $result;
         }

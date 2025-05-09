@@ -1,12 +1,13 @@
 <?php
 
-namespace ConectaConsulta\Models;
+namespace ConectaConsulta\Services;
 
+use ConectaConsulta\Database\ConexaoBD;
 use Exception;
 use PDO;
 use Throwable;
 
-class Paciente {
+class PacienteServico {
     public $db;
     public $id;
     public $nome;
@@ -18,7 +19,7 @@ class Paciente {
 
     public function __construct() {
         try{
-          $this->db = new Database();  
+          $this->conexao = new ConexaoBD::getConexao();  
         } catch ( Exception $ConectaConsulta){
             die("Erro de conexão: " . $ConectaConsulta->getMessage());
         }
