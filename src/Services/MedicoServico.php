@@ -46,7 +46,7 @@ class MedicoServico {
 
     public function carregarPorId($id) {
         $sql = "SELECT * FROM medico WHERE id_medico = ?";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
         $medico = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -57,7 +57,7 @@ class MedicoServico {
             $this->especialidade = $medico['especialidade'];
             $this->telefone = $medico['telefone'];
             $this->email = $medico['email'];
-            $this->pacienteId = $medico['Paciente_id_paciente'];
+            $this->pacienteId = $medico['paciente_id'];
             return true;
         }
         return false;
@@ -71,9 +71,9 @@ class MedicoServico {
                     especialidade = ?, 
                     telefone = ?, 
                     email = ?, 
-                    Paciente_id_paciente = ? 
+                    paciente_id = ? 
                     WHERE id_medico = ?";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conexao->prepare($sql);
             return $stmt->execute([
                 $this->nome,
                 $this->crm,
@@ -84,9 +84,9 @@ class MedicoServico {
                 $this->id
             ]);
         } else {
-            $sql = "INSERT INTO medico (nome, crm, especialidade, telefone, email, Paciente_id_paciente) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($sql);
+            $sql = "INSERT INTO medico (nome, crm, especialidade, telefone, email, paciente_id) 
+                    VALUES (:nome,:crm,:especialidade,:telefone,:email,:paciente_id)";
+            $stmt = $this->conexao->prepare($sql);
             $result = $stmt->execute([
                 $this->nome,
                 $this->crm,
@@ -96,7 +96,7 @@ class MedicoServico {
                 $this->pacienteId
             ]);
             if ($result) {
-                $this->id = $this->db->lastInsertId();
+                $this->id = $this->conexao->lastInsertId();
             }
             return $result;
         }
