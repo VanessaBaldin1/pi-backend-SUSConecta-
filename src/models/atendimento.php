@@ -16,6 +16,9 @@ final class Atendimento {
        $this->setDiagnostico($diagnostico);
        $this->setPrescricao($prescricao); 
     }
+    public function getMedicamento():string {
+        return $this->$medicamento
+    }
 
     public function getNome():string {
         return $this->nome;
@@ -33,10 +36,23 @@ final class Atendimento {
         return $this->prescricao;
     }
 
+    public function getObservacoes():string {
+        return $this->$observacoes;
+    }
+    
+
+
+
     public function getId(): ?int {
         return $this->id;
     }
 
+  
+
+    private function setMedicamento(string $medicamentos):void {
+      $this->medicamento = $medicamentos
+    }
+   
     private function setNome(string $nome):void {
         $this->nome = $nome;
     }
@@ -52,10 +68,16 @@ final class Atendimento {
     private function setPrescricao(string $prescricao):void {
         $this->prescricao = $prescricao;
     }
+    private function setObservacoes(string $observacoes):void {
+        $this->observacoes = $observacoes;
+    }
 
     private function setId(?int $id):void {
         $this->id = $id;
     }
+
+  
+    
 
 
 

@@ -1,8 +1,13 @@
 <?php
-require_once '../src/Database/Conexao.php';
+namespace ConectaConsulta\Services;
 
-class Medico {
-    public $db;
+use ConectaConsulta\Database\ConexaoBD;
+use ConectaConsulta\Models\Atendimento;
+use PDO;
+ 
+
+class MedicoServico {
+    public $conexao;
     public $id;
     public $nome;
     public $crm;
@@ -12,7 +17,7 @@ class Medico {
     public $pacienteId;
 
     public function __construct() {
-        $this->db = new Database();
+        $this->conexao = ConexaoBD::getConexao();
     }
 
     public function getId() {

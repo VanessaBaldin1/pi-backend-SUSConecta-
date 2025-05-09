@@ -2,7 +2,7 @@
 namespace ConectaConsulta\Services;
 
 use ConectaConsulta\Database\ConexaoBD;
-use ConectaConsulta\models\Atendimento;
+use ConectaConsulta\Models\Atendimento;
 use PDO;
 
 class AtendimentoServico {
@@ -94,11 +94,16 @@ class AtendimentoServico {
                     Paciente_id_paciente, hospital_clinica_id_hospital
                 ) VALUES (:medicamento, :data_hora, :diagnostico, :prescricao, :observacoes, :status, :especialidades, :paciente_id, :hospital_clinica_id)";
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(":medicamento", $atendimento->getMedicamento(), PDO::PARAM_STR); // criar
+            $consulta->bindValue(":medicamento", $atendimento->getMedicamento(), PDO::PARAM_STR); 
             $consulta->bindValue(":data_hora", $atendimento->getDataHora(), PDO::PARAM_STR);
             $consulta->bindValue(":diagonistico", $atendimento->getDiagnostico(), PDO::PARAM_STR);
             $consulta->bindValue(":prescricao", $atendimento->getPrescricao(), PDO::PARAM_STR);
-            $consulta->bindValue(":observacoes", $atendimento->getObservacoes(), PDO::PARAM_STR); // criar
+            $consulta->bindValue(":observacoes", $atendimento->getObservacoes(), PDO::PARAM_STR); 
+            $consulta->bindValue(":prescricoes", $prescricoes->getPrescricoes(),PDO::PARAM_STR);
+            $consulta->bindValue("::paciente_id", $paciente_id->getPaciente_id(),PDO::PARAM_INT);
+            $consulta->bindValue(":::hospital_clinica_id", $paciente_id->getHospital_clinica_id(),PDO::PARAM_INT);
+            
+
             $result = $consulta->execute();
             if ($result) {
                 $this->id = $this->conexao->lastInsertId();
