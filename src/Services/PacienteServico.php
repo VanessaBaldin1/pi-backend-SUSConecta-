@@ -5,10 +5,10 @@ namespace ConectaConsulta\Services;
 use ConectaConsulta\Database\ConexaoBD;
 use Exception;
 use PDO;
-use Throwable;
+
 
 class PacienteServico {
-    public $db;
+    public $conexao;
     public $id;
     public $nome;
     public $dataNascimento;
@@ -19,7 +19,7 @@ class PacienteServico {
 
     public function __construct() {
         try{
-          $this->conexao = new ConexaoBD::getConexao();  
+          $this->conexao =  ConexaoBD::getConexao();  
         } catch ( Exception $ConectaConsulta){
             die("Erro de conexão: " . $ConectaConsulta->getMessage());
         }
@@ -56,7 +56,7 @@ class PacienteServico {
 
     public function carregarPorId($id) {
         $sql = "SELECT * FROM Paciente WHERE id_paciente = ?";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
         $paciente = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -83,7 +83,7 @@ class PacienteServico {
                     telefone = ?, 
                     email = ? 
                     WHERE id_paciente = ?";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conexao->prepare($sql);
             return $stmt->execute([
                 $this->nome,
                 $this->dataNascimento,
@@ -95,8 +95,8 @@ class PacienteServico {
             ]);
         } else {
             $sql = "INSERT INTO Paciente (nome, data_nascimento, cpf, endereco, telefone, email) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($sql);
+                    VALUES (:nome,:data_nascimento,:cpf,:endereco,:telefone ,:email )";
+            $stmt = $this->conexao->prepare($sql);
             $result = $stmt->execute([
                 $this->nome,
                 $this->dataNascimento,
@@ -106,7 +106,7 @@ class PacienteServico {
                 $this->email
             ]);
             if ($result) {
-                $this->id = $this->db->lastInsertId();
+                $this->id = $this->conexao->lastInsertId();
             }
             return $result;
         }
