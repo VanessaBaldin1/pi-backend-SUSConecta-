@@ -17,23 +17,23 @@ final class Atendimento {
        $this->setPrescricao($prescricao); 
     }
 
-    private function getNome():string {
+    public function getNome():string {
         return $this->nome;
     }
 
-    private function getDataHora():string {
+    public function getDataHora():string {
         return $this->dataHora;
     }
 
-    private function getDiagnostico():string {
+    public function getDiagnostico():string {
         return $this->diagnostico;
     }
 
-    private function getPrescricao():string {
+    public function getPrescricao():string {
         return $this->prescricao;
     }
 
-    private function getId(): ?int {
+    public function getId(): ?int {
         return $this->id;
     }
 
