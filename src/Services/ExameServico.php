@@ -1,8 +1,11 @@
 <?php
 namespace ConectaConsulta\Services;
 
+use ConectaConsulta\Database\ConexaoBD;
+use PDO;
+
 class Exame {
-    public $db;
+    public $conexao;
     public $id;
     public $idConsulta;
     public $tipo;
@@ -13,7 +16,7 @@ class Exame {
     public $pacienteId;
 
     public function __construct() {
-        $this->db = new Database();
+        $this->conexao =  ConexaoBD::getConexao();  
     }
 
     public function getExamesPaciente($pacienteId) {
@@ -22,7 +25,7 @@ class Exame {
                 JOIN atendimento a ON e.atendimento_id_atendimento = a.id_atendimento 
                 WHERE e.atendimento_Paciente_id_paciente = ? 
                 ORDER BY e.data DESC";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$pacienteId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -38,7 +41,7 @@ class Exame {
                     atendimento_id_atendimento = ?, 
                     atendimento_Paciente_id_paciente = ? 
                     WHERE id_exame = ?";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conexao->prepare($sql);
             return $stmt->execute([
                 $this->idConsulta,
                 $this->tipo,
@@ -52,9 +55,9 @@ class Exame {
         } else {
             $sql = "INSERT INTO exame (
                     id_consulta, tipo, resultado, laboratorio, 
-                    data, atendimento_id_atendimento, atendimento_Paciente_id_paciente
-                ) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($sql);
+                    data, atendimento_id, atendimento_Paciente_id
+                ) VALUES (:id_consulta,:tipo,:resultado,:laboratorio,:data,:atendimento_id,:atendimento_Paciente_id)";
+            $stmt = $this->conexao->prepare($sql);
             $result = $stmt->execute([
                 $this->idConsulta,
                 $this->tipo,
@@ -65,7 +68,7 @@ class Exame {
                 $this->pacienteId
             ]);
             if ($result) {
-                $this->id = $this->db->lastInsertId();
+                $this->id = $this->conexao->lastInsertId();
             }
             return $result;
         }
