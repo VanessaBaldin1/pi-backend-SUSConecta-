@@ -1,5 +1,5 @@
 <?php 
-namespace ConectaConsulta\models;
+namespace ConectaConsulta\Models;
 
 final class Atendimento {
     private ?int $id;
