@@ -1,23 +1,28 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atendimento - Conecta-Consulta</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <nav>
     <div class="logo">
-      <img src="/imagens/logotipo.png" alt="Logo Conecta-Consulta">
+      <img src="imagens/logotipo.png" alt="Logo Conecta-Consulta">
       Conecta-Consulta
     </div>
     <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="atendimento.html" class="active">Atendimento</a></li>
-      <li><a href="exame.html">Exame</a></li>
-      <li><a href="medico.html">Médico</a></li>
-      <li><a href="paciente.html">Paciente</a></li>
+      <li><a href="index.php">Início</a></li>
+      <li><a href="atendimento.php" class="active">Atendimento</a></li>
+      <li><a href="exame.php">Exame</a></li>
+      <li><a href="medico.php">Médico</a></li>
+      <li><a href="paciente.php">Paciente</a></li>
     </ul>
   </nav>
   <main>
@@ -41,7 +46,7 @@
     </section>
   </main>
   <footer>
-    <img src="/imagens/logotipo.png" alt="Logo Conecta-Consulta">
+    <img src="imagens/logotipo.png" alt="Logo Conecta-Consulta">
     <p>&copy; 2025 Conecta-Consulta. Todos os direitos reservados.</p>
     <p>Suporte: suporte@conectaconsulta.com</p>
   </footer>
