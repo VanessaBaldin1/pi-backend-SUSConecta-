@@ -4,34 +4,40 @@ namespace ConectaConsulta\Models;
 use ConectaConsulta\Database\ConexaoBD;
 
 
+
+
 class Paciente {
-    public $nome;
-    public $data_nascimento;
-    public $cpf;
-    public $endereco;
-    public $telefone;
-    public $email;
+    private $pdo;
 
-    public function __construct($nome, $data_nascimento, $cpf, $endereco, $telefone, $email) {
-        $this->nome = $nome;
-        $this->data_nascimento = $data_nascimento;
-        $this->cpf = $cpf;
-        $this->endereco = $endereco;
-        $this->telefone = $telefone;
-        $this->email = $email;
+    public function __construct() {
+         $this->pdo = ConexaoBD::getConexao();
     }
 
-    public function salvar() {
-        $pdo = ConexaoBD::getConexao();
-        $sql = 'INSERT INTO Paciente (nome, data_nascimento, cpf, endereco, telefone, email) VALUES (?, ?, ?, ?, ?, ?)';
-        $stmt = $pdo->prepare($sql);
-        return $stmt->execute([
-            $this->nome,
-            $this->data_nascimento,
-            $this->cpf,
-            $this->endereco,
-            $this->telefone,
-            $this->email
+    public function inserirPaciente($nome, $data_nascimento, $cpf, $endereco, $telefone, $email) {
+    try {
+        $sql = "INSERT INTO paciente (nome, data_nascimento, cpf, endereco, telefone, email) 
+                VALUES (:nome, :data_nascimento, :cpf, :endereco, :telefone, :email)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':nome' => $nome,
+            ':data_nascimento' => $data_nascimento,
+            ':cpf' => $cpf,
+            ':endereco' => $endereco,
+            ':telefone' => $telefone,
+            ':email' => $email
         ]);
+
+        echo "Paciente inserido com sucesso.";
+    } catch (\PDOException $e) {
+        echo "Erro PDO: " . $e->getMessage();
     }
-} 
+}
+
+
+
+    public function listarTodos() {
+        $sql = "SELECT * FROM paciente ORDER BY id DESC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+}
