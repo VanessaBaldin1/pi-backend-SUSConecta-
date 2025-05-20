@@ -1,7 +1,22 @@
 {
-  "autoload": {
-      "psr-4" : {
-          "ConectaConsulta\\" : "src/"
-      }
-  }
+    "name": "conecta-consulta/sistema",
+    "description": "Sistema de gerenciamento de consultas médicas",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ConectaConsulta\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Conecta Consulta",
+            "email": "suporte@conectaconsulta.com"
+        }
+    ],
+    "minimum-stability": "stable"
 }
